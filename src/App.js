@@ -27,20 +27,20 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          {/* <Sidebar isSidebar={isSidebar} /> */}
+          <Sidebar isSidebar={isSidebar} />
           <main className="content">
             {/* <CreateAccount/> */}
-            <LoginAccount/>
-            {/* <Topbar setIsSidebar={setIsSidebar} />
+            {/* <LoginAccount/> */}
+            <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Map" element={<Map/>}/>
               <Route path="/Fees" element={<Fees/>}/>
               <Route path="/Calendar" element={<Calendar/>}/>
-              <Route path="/LineGraph" element={<LineGraph/>}/> */}
+              <Route path="/LineGraph" element={<LineGraph/>}/>
               {/* <Route path="/faq" element={<FAQ />} /> */}
           
-            {/* </Routes> */}
+             </Routes>
           </main>
         </div>
       </ThemeProvider>
