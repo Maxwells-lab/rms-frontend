@@ -1,42 +1,65 @@
 import { Box, IconButton, useTheme } from "@mui/material";
-import { ColorModeContext, tokens} from "../theme";
+import { ColorModeContext, tokens } from "../theme";
 import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-// import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import * as React from "react";
-import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
-import MailIcon from '@mui/icons-material/Mail';
+import MailIcon from "@mui/icons-material/Mail";
 import Badge from "@mui/material/Badge";
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import avatar from "../components/Assets/images.jpeg";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import avatarLogo from "../components/Assets/logo.png";
 
 const Topbar = () => {
-   
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const colorMode = React.useContext(ColorModeContext);
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2} >
+    <Box display="flex" justifyContent="space-between" p={2}>
       {/* SEARCH BAR */}
-      <Box
-        display="flex"
-        backgroundColor={colors.primary[400]}
-        borderRadius="3px"
-      >
-        <InputBase sx={{ ml: 2, flex: 2 }} placeholder="Search" />
-        <IconButton type="button" sx={{ p: 1 }}>
-          <SearchIcon />
-        </IconButton>
-      </Box>
-
+      <div>
+        <img
+          src={avatarLogo}
+          alt="Logo"
+          style={{ width: "3rem", height: "3rem", borderRadius: "2.1rem" }}
+        />
+        <span
+          onClick={() => {}}
+          style={{
+            color: colors.redAccent[500],
+            fontStretch: "condensed",
+            fontFamily: "-moz-initial",
+            cursor: "pointer",
+          }}
+        >
+          R.M.S
+        </span>
+      </div>
       {/* ICONS */}
-      <Box display="flex">
+      <Box display="flex" sx={{ gap: "1.89rem" }}>
+        <Box
+          display="flex"
+          backgroundColor={colors.primary[400]}
+          borderRadius="3rem"
+          height="9vh"
+          borderTop="5rem"
+          flexBasis="inline"
+          // zIndex="999"
+        >
+          <InputBase
+            sx={{ ml: 2, flex: 1, cursor: "pointer" }}
+            placeholder="Search"
+            onClick={() => {}}
+          />
+          <IconButton type="button" sx={{ p: 1 }}>
+            <SearchIcon />
+          </IconButton>
+        </Box>
+
         <IconButton onClick={colorMode.toggleColorMode}>
-        
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlinedIcon />
           ) : (
@@ -46,25 +69,32 @@ const Topbar = () => {
 
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <MailIcon onClick={() => {}} />
           </Badge>
         </IconButton>
 
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            <NotificationsIcon />
+            <NotificationsIcon onClick={() => {}} />
           </Badge>
         </IconButton>
-        
-        <IconButton>
-          <ListOutlinedIcon/>
-        </IconButton>
 
-        <IconButton>
-          <PersonOutlinedIcon />
-        </IconButton>
-
-
+        <Box>
+          <img
+            src={avatar}
+            alt="User Profile"
+            style={{
+              width: "3rem",
+              height: "3rem",
+              borderRadius: "5rem",
+              cursor: "pointer",
+            }}
+            onClick={() => {}}
+          />
+          <IconButton>
+            <ArrowDropDownIcon onClick={() => {}} />
+          </IconButton>
+        </Box>
       </Box>
     </Box>
   );
