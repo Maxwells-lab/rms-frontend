@@ -14,7 +14,7 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected, dotColor }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -26,15 +26,18 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography fontWeight="bold">{title}</Typography>
+      {title}
+
       <Link to={to} />
     </MenuItem>
   );
 };
+
 function Sidebar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(true);
+
   const [selected, setSelected] = useState("Dashboard");
   return (
     <Box
@@ -140,6 +143,7 @@ function Sidebar() {
             <Item
               title="Calendar"
               to="/Calendar"
+              dotColor={colors.redAccent[500]}
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

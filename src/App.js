@@ -15,6 +15,7 @@ import Home from "./scenes/Home";
 import LineGraph from "./scenes/line";
 import Calendar from "./scenes/calendar";
 import Fees from "./scenes/Fees&Fines";
+import OpenLayers from "./scenes/Map/Map";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -33,7 +34,7 @@ function App() {
             <Divider variant="middle" light="true" />
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* <Route path="/Map" element={<OpenLayerMap />} /> */}
+              <Route path="/Map" element={<OpenLayers />} />
               <Route path="/Fees" element={<Fees />} />
               <Route path="/Calendar" element={<Calendar />} />
               <Route path="/LineGraph" element={<LineGraph />} />
