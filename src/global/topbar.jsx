@@ -12,6 +12,10 @@ import avatar from "../components/Assets/images.jpeg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import avatarLogo from "../components/Assets/logo.png";
 
+import UserProfileDropdown from "../components/UserProfileDropdown";
+import Notification from "../components/Notification";
+import EmailComponent from "../components/EmailComponent";
+
 const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -68,19 +72,19 @@ const Topbar = () => {
         </IconButton>
 
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon onClick={() => {}} />
+          <Badge>
+            <EmailComponent/>
           </Badge>
         </IconButton>
 
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <NotificationsIcon onClick={() => {}} />
+          <Badge>
+            <Notification/>
           </Badge>
         </IconButton>
 
         <Box>
-          <img
+          {/* <img
             src={avatar}
             alt="User Profile"
             style={{
@@ -90,9 +94,9 @@ const Topbar = () => {
               cursor: "pointer",
             }}
             onClick={() => {}}
-          />
+          /> */}
           <IconButton>
-            <ArrowDropDownIcon onClick={() => {}} />
+            <UserProfileDropdown />
           </IconButton>
         </Box>
       </Box>
@@ -101,3 +105,6 @@ const Topbar = () => {
 };
 
 export default Topbar;
+
+
+
