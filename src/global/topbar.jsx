@@ -1,10 +1,10 @@
 import { Box, IconButton, useTheme } from "@mui/material";
-import { ColorModeContext, tokens } from "../theme";
+import { GlobalContext, tokens } from "../theme";
+import * as React from "react";
 import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import * as React from "react";
 import MailIcon from "@mui/icons-material/Mail";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -19,7 +19,7 @@ import EmailComponent from "../components/EmailComponent";
 const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const colorMode = React.useContext(ColorModeContext);
+  const colorMode = React.useContext(GlobalContext);
 
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
