@@ -399,25 +399,25 @@ export const mockBarData = [
 
 export const mockPieData = [
   {
-    id: "hack",
+    id: "Building",
     label: "hack",
     value: 239,
     color: "hsl(104, 70%, 50%)",
   },
   {
-    id: "make",
+    id: "Lands",
     label: "make",
     value: 170,
     color: "hsl(162, 70%, 50%)",
   },
   {
-    id: "go",
+    id: "Contracts",
     label: "go",
     value: 322,
     color: "hsl(291, 70%, 50%)",
   },
   {
-    id: "lisp",
+    id: "Ethereum",
     label: "lisp",
     value: 503,
     color: "hsl(229, 70%, 50%)",

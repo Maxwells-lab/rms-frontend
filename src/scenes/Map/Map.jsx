@@ -7,34 +7,33 @@ import XYZ from "ol/source/XYZ";
 import "./mapCSS.css";
 import OSM from "ol/source/OSM";
 import "./mapCSS.css";
-import useMapStore from "./useStore.ts";
 import { FullScreen, defaults as defaultControls } from "ol/control.js";
 import Control from "ol/control/Control.js";
 import { ScaleLine } from "ol/control.js";
 
-const OpenLayers = ({ children, zoom, center }) => {
-  const map = useMapStore((state) => state.map);
-  const setMap = useMapStore((state) => state.populateMap);
-  const destroyMap = useMapStore((state) => state.removeMap);
+export const OpenLayers = ({ children, zoom, center }) => {
   const mapId = useRef();
-  const key = "WdAwZy7YvC6fD4tgO9G2";
+  // const key = "WdAwZy7YvC6fD4tgO9G2";
   const attributions =
     '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> ' +
     '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
 
-    // useEffect(() => {
-    //   const fetchData = () => {
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open("GET", "YOUR_ENDPOINT_URL");
-    //     xhr.onload = () => {
-    //       if (xhr.status === 200) {
-    //         const data = JSON.parse(xhr.responseText);
-    //         // Process the fetched data as needed
-    //         console.log(data);
-    //       }
-    //     };
-    //     xhr.send();
-    //   };
+useEffect(()=>{
+  const fetchData = () => {
+    const url =""
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "YOUR_ENDPOINT_URL");
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+        // Process the fetched data as needed
+        console.log(data);
+      }
+    };
+    xhr.send();
+  }
+},[])
+
 
   useEffect(() => {
     let map = new Map({
@@ -57,14 +56,12 @@ const OpenLayers = ({ children, zoom, center }) => {
         zIndex: 999,
       }),
     });
-    
+
     map.setTarget(mapId.current);
     map.addControl(new ScaleLine({ units: "us" }));
-    setMap(map);
     return () => {
-      if (!map) return;
       map.setTarget(undefined);
-      destroyMap();
+     
     };
   }, []);
 
@@ -73,10 +70,13 @@ const OpenLayers = ({ children, zoom, center }) => {
       {children}
     </div>
   );
-};
+}
 
-export default OpenLayers;
 
-// const OpenLayers = () => {
+
+
+
+
+
 
 

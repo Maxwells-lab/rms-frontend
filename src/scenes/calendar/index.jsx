@@ -38,17 +38,15 @@ const Calendar = () => {
 
   const handleEventClick = (selected) => {
     if (
-      window.confirm(
-        `Are you sure you want to delete the event '${selected.event.title}'`
-      )
-    ) {
+      window.confirm(`Are you sure you want to delete the event '${selected.event.title}'`)
+    ){
       selected.event.remove();
     }
   };
 
   return (
     <Box m="20px">
-      <TextTemplator title="Calendar" subtitle="Full Calendar Interactive Page" />
+      <TextTemplator title="Calendar" subtitle="Full Calendar" />
 
       <Box display="flex" justifyContent="space-between">
         {/* CALENDAR SIDEBAR */}

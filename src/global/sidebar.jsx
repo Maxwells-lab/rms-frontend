@@ -13,21 +13,25 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import LineAxisIcon from "@mui/icons-material/LineAxis";
+import PieChartIcon from "@mui/icons-material/PieChart";
+import BusinessIcon from "@mui/icons-material/Business";
+import ExploreIcon from "@mui/icons-material/Explore";
+import ApartmentIcon from "@mui/icons-material/Apartment";
 const Item = ({ title, to, icon, selected, setSelected, dotColor }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
     <MenuItem
       active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
       onClick={() => setSelected(title)}
+      style={{
+        color: colors.grey[400],
+      }}
       icon={icon}
     >
       {title}
-
       <Link to={to} />
     </MenuItem>
   );
@@ -37,19 +41,21 @@ function Sidebar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(true);
-
   const [selected, setSelected] = useState("Dashboard");
   return (
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
+          background: `${colors.primary[500]} !important`,
+        },
+        "& .pro-sidebar-width": {
+          width: "10px !important",
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
         "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
+          padding: "3px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
           color: "#868dfb !important",
@@ -76,7 +82,7 @@ function Sidebar() {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                ml="2rem"
+                ml="1rem"
               >
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -111,8 +117,8 @@ function Sidebar() {
           <Box paddingLeft={isCollapsed ? undefined : "1%"}>
             <Item
               title="Home"
-              to="/"
               icon={<HomeOutlinedIcon />}
+              to="/"
               selected={selected}
               setSelected={setSelected}
             />
@@ -120,14 +126,14 @@ function Sidebar() {
             <Item
               title="Maps"
               to="/Map"
-              icon={<MapOutlinedIcon />}
+              icon={<ExploreIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Fees&Fines"
               to="/FEES"
-              icon={<ReceiptOutlinedIcon />}
+              icon={<CurrencyExchangeIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -135,7 +141,14 @@ function Sidebar() {
             <Item
               title="Business"
               to="/Business"
-              icon={<ContactsOutlinedIcon />}
+              icon={<BusinessIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Buildings"
+              to="/Building"
+              icon={<ApartmentIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -152,7 +165,15 @@ function Sidebar() {
             <Item
               title="Line Graph"
               to="/LineGraph"
-              icon={<AutoGraphOutlinedIcon />}
+              icon={<LineAxisIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Pie Chart"
+              to="/PieChart"
+              icon={<PieChartIcon />}
               selected={selected}
               setSelected={setSelected}
             />
