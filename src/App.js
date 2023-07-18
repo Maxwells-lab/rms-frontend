@@ -18,6 +18,10 @@ import Fees from "./scenes/Fees&Fines";
 import OpenLayers from "./scenes/Map/Map";
 import { PieChart } from "./components/PieChart";
 import Pie from "./scenes/Pie";
+import ProfilePage from "./components/ProfilePage";
+import Privacy from "./components/Privacy";
+import Settings from "./components/Settings";
+import FAQ from "../src/scenes/faq/index";
 
 function App() {
   const [theme, colorMode] = useContextMode();
@@ -41,8 +45,13 @@ function App() {
               <Route path="/Calendar" element={<Calendar />} />
               <Route path="/PieChart" element={<Pie />} />
               <Route path="/LineGraph" element={<LineGraph />} />
+              <Route path="/ProfilePage" element={<ProfilePage />} />
+              <Route path="/Settings" element={<Settings />} />
+              <Route path="/Privacy" element={<Privacy />} />
               {/* <Route path="/faq" element={<FAQ />} /> */}
-            </Routes>
+              <Route path="/FAQ" element={<FAQ />} />
+
+              </Routes>
           </main>
         </div>
       </ThemeProvider>
