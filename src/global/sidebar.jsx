@@ -5,12 +5,8 @@ import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
@@ -19,6 +15,8 @@ import PieChartIcon from "@mui/icons-material/PieChart";
 import BusinessIcon from "@mui/icons-material/Business";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ApartmentIcon from "@mui/icons-material/Apartment";
+
+
 const Item = ({ title, to, icon, selected, setSelected, dotColor }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -125,7 +123,7 @@ function Sidebar() {
 
             <Item
               title="Maps"
-              to="/Map"
+              to="/OpenMap"
               icon={<ExploreIcon />}
               selected={selected}
               setSelected={setSelected}

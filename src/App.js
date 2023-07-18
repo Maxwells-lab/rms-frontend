@@ -15,13 +15,15 @@ import Home from "./scenes/Home";
 import LineGraph from "./scenes/line";
 import Calendar from "./scenes/calendar";
 import Fees from "./scenes/Fees&Fines";
-import OpenLayers from "./scenes/Map/Map";
-import { PieChart } from "./components/PieChart";
-import Pie from "./scenes/Pie";
+import OpenMap from "./components/OpenMap";
 import ProfilePage from "./components/ProfilePage";
-import Privacy from "./components/Privacy";
 import Settings from "./components/Settings";
-import FAQ from "../src/scenes/faq/index";
+import Privacy from "./components/Privacy";
+import FAQ from "./scenes/faq/index";
+// import { PieChart } from "./components/PieChart";
+import Pie from "./scenes/Pie";
+// import { Navigate } from "react-router-dom";
+// import FinancialPerformace from "./scenes/Home/FinancialPerformace";
 
 function App() {
   const [theme, colorMode] = useContextMode();

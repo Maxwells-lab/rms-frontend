@@ -4,7 +4,7 @@ import { mockTransactions } from "../../DummyData/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-
+import FinancialPerformace from "./FinancialPerformace";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import TextTemplator from "../../components/Template/Header";
 // import { LineChart } from "../../components/LineChart";
@@ -16,6 +16,7 @@ import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 import { PieChart } from "../../components/PieChart";
 
+
 const Home = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -26,7 +27,7 @@ const Home = () => {
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <TextTemplator
           title="REVENUE MOBILISATION "
-          subtitle="Take Advantage of the space"
+          // subtitle="Take Advantage of the space"
         />
 
         <Box>
@@ -39,8 +40,9 @@ const Home = () => {
               padding: "10px 20px",
             }}
           >
+    
             <DownloadOutlinedIcon sx={{ mr: "10px", borderRadius: "5px" }} />
-            Download Reports
+            Download
           </Button>
         </Box>
       </Box>
@@ -64,31 +66,26 @@ const Home = () => {
           borderRadius="1.4rem"
         >
           <StatBox
-            title="12,361"
-            subtitle="Emails Delivered"
+            title="Sum Net Revenue"
+            subtitle="₡109,846"
             progress="0.88"
             increase="+14%"
-            // Probability="+/-12"
-            icon={
-              <EmailIcon
-                sx={{ color: colors.primary[400], fontSize: "26px" }}
-              />
-            }
+            Probability="+/-92"
           />
         </Box>
 
         <Box
           gridColumn="span 3"
-          // backgroundColor={colors.primary[400]}
-          backgroundColor={colors.greenAccent[600]}
+          backgroundColor={colors.primary[400]}
+          // backgroundColor={colors.greenAccent[600]}
           display="flex"
           alignItems="center"
           justifyContent="center"
           borderRadius="1.4rem"
         >
           <StatBox
-            title="₡431,225"
-            subtitle="Sales Obtained"
+            title="Total Profit"
+            subtitle="₡431,225"
             progress="0.50"
             increase="+21%"
             icon={
@@ -227,7 +224,7 @@ const Home = () => {
               alignItems="center"
               borderBottom={`4px solid ${colors.primary[500]}`}
               p="15px"
-              sx={{ borderRadius: "1.5rem 1.5rem 1.5rem 1.5rem" }}
+              
             >
               <Box>
                 <Typography
