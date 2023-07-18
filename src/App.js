@@ -15,9 +15,11 @@ import Home from "./scenes/Home";
 import LineGraph from "./scenes/line";
 import Calendar from "./scenes/calendar";
 import Fees from "./scenes/Fees&Fines";
-import OpenLayers from "./scenes/Map/Map";
-import { PieChart } from "./components/PieChart";
+import OpenMap from "./components/OpenMap";
+// import { PieChart } from "./components/PieChart";
 import Pie from "./scenes/Pie";
+// import { Navigate } from "react-router-dom";
+// import FinancialPerformace from "./scenes/Home/FinancialPerformace";
 
 function App() {
   const [theme, colorMode] = useContextMode();
@@ -41,6 +43,8 @@ function App() {
               <Route path="/Calendar" element={<Calendar />} />
               <Route path="/PieChart" element={<Pie />} />
               <Route path="/LineGraph" element={<LineGraph />} />
+              <Route path="/OpenMap" element={<OpenMap />} />
+
               {/* <Route path="/faq" element={<FAQ />} /> */}
             </Routes>
           </main>

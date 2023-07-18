@@ -1,16 +1,18 @@
-/* @import "node_modules/ol/ol.css"; */
+ .map {
+     width: 100%;
+     height: 400vh;
+ }
 
+ .map:-webkit-full-screen {
+     height: 100%;
+     margin: 0;
+ }
 
-body,
-html {
-    margin: 0;
-    height: 880px;
-}
+ .map:fullscreen {
+     height: 100%;
+ }
 
-#map {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
- 
-}
+ position the rotate control lower than usual */
+ .map .ol-rotate {
+     top: 3em;
+ }
