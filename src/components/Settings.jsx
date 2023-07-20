@@ -1,52 +1,121 @@
-import React from 'react';
-import { Container, Typography, Grid, TextField, Button } from '@mui/material';
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { Switch, FormControlLabel, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+// import { Brightness4 as Brightness4Icon, Edit as EditIcon, QuestionAnswer as QuestionAnswerIcon, Notifications as NotificationsIcon } from '@mui/icons-material';
+// import Notification from './Notification';
 
-const Settings = () => {
-  // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Add your logic to handle form submission here
+// const SettingsPage = () => {
+//   // Replace the following logic with your own theme toggle logic
+//   const handleThemeToggle = () => {
+//     // Handle theme toggle logic
+//   };
+
+//   return (
+//     <List sx={{marginLeft: "300px", marginTop:"60px"}}>
+//       {/* Theme Toggle */}
+//       <ListItem>
+//         <ListItemIcon>
+//           <Brightness4Icon />
+//         </ListItemIcon>
+//         <ListItemText primary="Theme" />
+//         <FormControlLabel
+//           control={<Switch checked={false} onChange={handleThemeToggle} />}
+//           label="Dark Mode"
+//           sx={{marginRight:"150px"}}
+//         />
+//       </ListItem>
+
+//       {/* Edit Profile */}
+//       <Link to="/profilepage" style={{ textDecoration: 'none', color: 'inherit' }}>
+//         <ListItem button>
+//           <ListItemIcon>
+//             <EditIcon />
+//           </ListItemIcon>
+//           <ListItemText primary="Edit Profile" />
+//         </ListItem>
+//       </Link>
+      
+//         <ListItem button sx={{marginLeft: "-12px", textDecoration: 'none', color: 'inherit'}}>
+//         <ListItemIcon>
+//           <Notification />
+//         </ListItemIcon>
+//           <ListItemText primary="Notification" sx={{marginLeft:"10px"}}/>
+//         </ListItem>
+
+//       {/* FAQ */}
+//       <Link to="/faq" style={{ textDecoration: 'none', color: 'inherit' }}>
+//         <ListItem button>
+//           <ListItemIcon>
+//             <QuestionAnswerIcon />
+//           </ListItemIcon>
+//           <ListItemText primary="FAQ" />
+//         </ListItem>
+//       </Link>
+//     </List>
+//   );
+// };
+
+// export default SettingsPage;
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Switch, FormControlLabel, IconButton, List, ListItem, ListItemIcon, ListItemText, Box, Typography } from '@mui/material';
+import { Brightness4 as Brightness4Icon, Edit as EditIcon, QuestionAnswer as QuestionAnswerIcon, Notifications as NotificationsIcon } from '@mui/icons-material';
+import Notification from './Notification';
+
+const SettingsPage = () => {
+  // Replace the following logic with your own theme toggle logic
+  const handleThemeToggle = () => {
+    // Handle theme toggle logic
   };
 
   return (
-    <Container maxWidth="md">
-      <Typography variant="h4" gutterBottom>
-        Revenue Settings
+    <Typography variant='h3' align='center' sx={{marginTop:"1px"}} >Settings
+        <Box sx={{ marginLeft: "150px", marginRight:"50px", marginTop: "60px", boxShadow: 10,  p: 2, borderRadius: "20px", width: "75%", height:"350px"}}>
+      <List>
+        {/* Theme Toggle */}
+        <ListItem>
+          <ListItemIcon>
+            <Brightness4Icon />
+          </ListItemIcon>
+          <ListItemText primary="Theme" />
+          <FormControlLabel
+            control={<Switch checked={false} onChange={handleThemeToggle} />}
+            label="Dark Mode"
+            sx={{ marginRight: "150px" }}
+          />
+        </ListItem>
+
+        {/* Edit Profile */}
+        <Link to="/profilepage" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem button>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
+            <ListItemText primary="Edit Profile" />
+          </ListItem>
+        </Link>
+
+        <ListItem button sx={{ marginLeft: "-12px", textDecoration: 'none', color: 'inherit' }}>
+          <ListItemIcon>
+            <Notification />
+          </ListItemIcon>
+          <ListItemText primary="Notification" sx={{ marginLeft: "10px" }} />
+        </ListItem>
+
+        {/* FAQ */}
+        <Link to="/faq" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem button>
+            <ListItemIcon>
+              <QuestionAnswerIcon />
+            </ListItemIcon>
+            <ListItemText primary="FAQ" />
+          </ListItem>
+        </Link>
+      </List>
+      </Box>
       </Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Revenue Threshold"
-              variant="outlined"
-              // Add necessary props for the input field
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Revenue Currency"
-              variant="outlined"
-              // Add necessary props for the input field
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Revenue Tax"
-              variant="outlined"
-              // Add necessary props for the input field
-            />
-          </Grid>
-          {/* Add more settings fields as needed */}
-        </Grid>
-              <Button sx={{ marginTop:"15px" }} type="submit" variant="contained" color="primary">
-          Save Changes
-        </Button>
-      </form>
-    </Container>
   );
 };
 
-export default Settings;
+export default SettingsPage;
