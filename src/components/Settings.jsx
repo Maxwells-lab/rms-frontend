@@ -1,13 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Switch, FormControlLabel, IconButton, List, ListItem, ListItemIcon, ListItemText, Box, Typography } from '@mui/material';
+import { Switch, FormControlLabel, IconButton, List, ListItem, ListItemIcon, ListItemText, Box, Typography, useTheme } from '@mui/material';
 import { Brightness4 as Brightness4Icon, Edit as EditIcon, QuestionAnswer as QuestionAnswerIcon, Notifications as NotificationsIcon } from '@mui/icons-material';
 import Notification from './Notification';
+import { GlobalContext, tokens } from "../theme";
+
 
 const SettingsPage = () => {
-  // Replace the following logic with your own theme toggle logic
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = React.useContext(GlobalContext);
+
   const handleThemeToggle = () => {
-    // Handle theme toggle logic
+
   };
 
   return (
@@ -21,7 +26,7 @@ const SettingsPage = () => {
           </ListItemIcon>
           <ListItemText primary="Theme" />
           <FormControlLabel
-            control={<Switch checked={false} onChange={handleThemeToggle} />}
+            control={<Switch checked={false} onChange={colorMode.toggleColorMode} />}
             label="Dark Mode"
             sx={{ marginRight: "150px" }}
           />
