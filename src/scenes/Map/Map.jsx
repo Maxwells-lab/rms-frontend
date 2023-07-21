@@ -11,7 +11,6 @@ import Select from "ol/interaction/Select";
 
 export const OpenLayers = () => {
   useEffect(() => {
-    console.log(`ger`)
     const map = new Map({
 
       target: 'map-container',
@@ -38,9 +37,55 @@ export const OpenLayers = () => {
 
     let selected = new  Select();
 
+    selected.on("select", async (item) => {
+      let feature = item.selected.at(0);
+      console.log(feature);
+
+      let [table, feature_id] = feature.id_.split(`.`)
+
+      if (table === "buildings") {
+        const BACKEND_ROOT_URL = "http://127.0.0.1:8000";
+        const response = await fetch(`${BACKEND_ROOT_URL}/buildings/${feature_id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result);
+
+        }
+        const businesses = await fetch(`${BACKEND_ROOT_URL}/buildings/${feature_id}/businesses`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+        if (businesses.ok) {
+          console.log(await businesses.json());
+        }
+      }
+      else if (table === `businesses`) {
+        // let business_data = $("#businesses-data")
+        const businesses = await fetch(`http://127.0.0.1:8000/businesses/${feature_id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+
+        if (businesses.ok) {
+          console.log(await businesses.json());
+        }
+
+      }
+
+    });
+
     map.addInteraction(new Link());
     map.addInteraction(selected);
-    console.log(`no`)
   }, []);
 
   return (
