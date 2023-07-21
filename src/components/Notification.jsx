@@ -58,7 +58,7 @@ const Notification = () => {
           <NotificationsIcon />
         </Badge>
       </IconButton>
-      <Dialog open={showDialog} onClose={handleDialogClose} style={{ marginLeft: '69%', marginTop: '-10%' }} maxWidth="md" fullWidth>
+      <Dialog open={showDialog} onClose={handleDialogClose} style={{ marginLeft: '69%', marginTop: '-10%'}} maxWidth="md" fullWidth>
         <DialogTitle color="secondary" fontSize={17} textAlign="center">
           Notifications
         </DialogTitle>
