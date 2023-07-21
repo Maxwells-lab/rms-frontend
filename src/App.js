@@ -17,6 +17,10 @@ import Calendar from "./scenes/calendar";
 // import Fees from "./scenes/Fees&Fines";
 import Fees from "./scenes/Fees&Fines";
 import OpenMap from "./components/OpenMap";
+import ProfilePage from "./components/ProfilePage";
+import Settings from "./components/Settings";
+import Privacy from "./components/Privacy";
+import FAQ from "./scenes/faq/index";
 // import { PieChart } from "./components/PieChart";
 import Pie from "./scenes/Pie";
 // import { Navigate } from "react-router-dom";
@@ -44,10 +48,13 @@ function App() {
               <Route path="/Calendar" element={<Calendar />} />
               <Route path="/PieChart" element={<Pie />} />
               <Route path="/LineGraph" element={<LineGraph />} />
-              <Route path="/OpenMap" element={<OpenMap />} />
-
+              <Route path="/ProfilePage" element={<ProfilePage />} />
+              <Route path="/Settings" element={<Settings />} />
+              <Route path="/Privacy" element={<Privacy />} />
               {/* <Route path="/faq" element={<FAQ />} /> */}
-            </Routes>
+              <Route path="/FAQ" element={<FAQ />} />
+
+              </Routes>
           </main>
         </div>
       </ThemeProvider>
