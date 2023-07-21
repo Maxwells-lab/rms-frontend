@@ -35,6 +35,11 @@ const Item = ({ title, to, icon, selected, setSelected, dotColor }) => {
   );
 };
 
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: "-100%" },
+};
+
 function Sidebar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -90,7 +95,7 @@ function Sidebar() {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box>
+            <Box isCollapsed={!isCollapsed} variants={variants}>
               <Box
                 display="flex"
                 justifyContent="center"
@@ -112,7 +117,11 @@ function Sidebar() {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "1%"}>
+          <Box
+            variants={variants}
+            animate={isCollapsed ? undefined : "1%"}
+            paddingLeft={isCollapsed ? undefined : "1%"}
+          >
             <Item
               title="Home"
               icon={<HomeOutlinedIcon />}
@@ -177,8 +186,8 @@ function Sidebar() {
             />
             <Box
               display="flex"
-              justifyContent="space-between"
-              rowGap="5rem"
+              justifyContent="space-around"
+              rowGap="2rem"
               paddingTop="5rem"
               flexDirection="column"
             >

@@ -14,6 +14,7 @@ import Topbar from "./global/topbar";
 import Home from "./scenes/Home";
 import LineGraph from "./scenes/line";
 import Calendar from "./scenes/calendar";
+// import Fees from "./scenes/Fees&Fines";
 import Fees from "./scenes/Fees&Fines";
 import OpenMap from "./components/OpenMap";
 // import { PieChart } from "./components/PieChart";

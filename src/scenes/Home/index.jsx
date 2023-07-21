@@ -16,7 +16,6 @@ import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 import { PieChart } from "../../components/PieChart";
 
-
 const Home = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -40,7 +39,6 @@ const Home = () => {
               padding: "10px 20px",
             }}
           >
-    
             <DownloadOutlinedIcon sx={{ mr: "10px", borderRadius: "5px" }} />
             Download
           </Button>
@@ -56,8 +54,10 @@ const Home = () => {
         sx={{ borderRadius: "0.9rem" }}
       >
         {/* ROW 1 */}
+
         <Box
           // gridColumn="span 3"
+          className="my-div"
           gridColumn="span 5"
           backgroundColor={colors.greenAccent[600]}
           display="flex"
@@ -75,6 +75,7 @@ const Home = () => {
         </Box>
 
         <Box
+          className="my-div"
           gridColumn="span 3"
           backgroundColor={colors.primary[400]}
           // backgroundColor={colors.greenAccent[600]}
@@ -97,6 +98,7 @@ const Home = () => {
         </Box>
 
         <Box
+          className="my-div"
           gridColumn="span 4"
           // gridRow="span 2"
           // backgroundColor={colors.primary[400]}
@@ -113,6 +115,7 @@ const Home = () => {
           >
             Overall Money Generated
           </aside>
+
           <ProgressCircle size="125" />
           <Box
             display="flex"
@@ -120,16 +123,7 @@ const Home = () => {
             alignItems="center"
             mt="25px"
             justifyContent="center"
-          >
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              ₡90,000 revenue generated
-            </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
-          </Box>
+          ></Box>
         </Box>
 
         <Box
@@ -139,6 +133,7 @@ const Home = () => {
           alignItems="center"
           justifyContent="center"
           borderRadius="1.4rem"
+          className="my-div"
         >
           <StatBox
             title="₡7,325,000"
@@ -155,11 +150,13 @@ const Home = () => {
 
         {/* ROW 2 */}
         <Box
+          className="my-div"
           gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
           <Box
+            sx={{ borderRadius: "4rem 4rem 4rem 4rem" }}
             mt="25px"
             p="0 30px"
             display="flex "
@@ -224,7 +221,6 @@ const Home = () => {
               alignItems="center"
               borderBottom={`4px solid ${colors.primary[500]}`}
               p="15px"
-              
             >
               <Box>
                 <Typography
@@ -253,10 +249,31 @@ const Home = () => {
           ))}
         </Box>
 
+        {/*  */}
         <Box
-          gridColumn="span 7"
+          gridColumn="span 15"
+          gridRow="span 3"
+          backgroundColor="cornflowerBlue"
+          padding="20px"
+        >
+          <Typography
+            variant="h5"
+            fontWeight="600"
+            sx={{ marginBottom: "-45px" }}
+          >
+            Pie CHARTS
+          </Typography>
+          <Box display="flex" alignContent="center" justifyContent="center">
+            <PieChart
+              isDashboard={true}
+              style={{ height: "22vh !important" }}
+            />
+          </Box>
+        </Box>
+
+        <Box
+          gridColumn="span 15"
           gridRow="span 2"
-          // backgroundColor={colors.primary[300]}
           backgroundColor="cornflowerBlue"
         >
           <Typography
@@ -266,27 +283,11 @@ const Home = () => {
           >
             Sales Quantity
           </Typography>
-          <Box height="250px" mt="-20px">
+          <Box height="200vh" mt="-20px" width="60vw" alignContent="center" display="flex" justifyContent="center" right="4rem">
             <BarChart isDashboard={true} />
           </Box>
         </Box>
-        <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor="cornflowerBlue"
-          padding="20px"
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ marginBottom: "15px" }}
-          >
-            Doughnut
-          </Typography>
-          <Box display="flex" alignContent="center" justifyContent="center">
-            <PieChart isDashboard={true} style={{ height: "32vh" }} />
-          </Box>
-        </Box>
+        
       </Box>
     </Box>
   );

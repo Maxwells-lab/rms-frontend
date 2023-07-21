@@ -12,7 +12,7 @@ const Pie = () => {
           display: "flex",
           paddingLeft: "30rem",
           height: "50vh",
-          width: "40vw",
+          width: "400vw",
         }}
       >
         <PieChart />
