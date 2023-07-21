@@ -132,7 +132,7 @@ function Sidebar() {
 
             <Item
               title="Maps"
-              to="/OpenMap"
+              to="/Map"
               icon={<ExploreIcon />}
               selected={selected}
               setSelected={setSelected}
