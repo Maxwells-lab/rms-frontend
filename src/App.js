@@ -16,7 +16,6 @@ import LineGraph from "./scenes/line";
 import Calendar from "./scenes/calendar";
 // import Fees from "./scenes/Fees&Fines";
 import Fees from "./scenes/Fees&Fines";
-import OpenMap from "./components/OpenMap";
 import ProfilePage from "./components/ProfilePage";
 import Settings from "./components/Settings";
 import Privacy from "./components/Privacy";
@@ -25,6 +24,7 @@ import FAQ from "./scenes/faq/index";
 import Pie from "./scenes/Pie";
 // import { Navigate } from "react-router-dom";
 // import FinancialPerformace from "./scenes/Home/FinancialPerformace";
+import {OpenLayers} from "./scenes/Map/Map";
 
 function App() {
   const [theme, colorMode] = useContextMode();
@@ -43,7 +43,7 @@ function App() {
             <Divider variant="middle" light="true" />
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* <Route path="/Map" element={<OpenLayers />} /> */}
+              <Route path="/Map" element={<OpenLayers />} />
               <Route path="/Fees" element={<Fees />} />
               <Route path="/Calendar" element={<Calendar />} />
               <Route path="/PieChart" element={<Pie />} />
