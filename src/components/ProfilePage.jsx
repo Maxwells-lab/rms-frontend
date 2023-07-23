@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Avatar,
   Grid,
@@ -12,6 +12,8 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import avatar from './Assets/images.jpeg';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+
 
 const ProfilePage = () => {
   const isSmallScreen = useMediaQuery('(max-width: 600px)');
@@ -45,6 +47,11 @@ const ProfilePage = () => {
     }));
   };
 
+  const fileInputRef = useRef(null);
+  const handleChangePhoto = () => {
+    fileInputRef.current.click();
+  }
+
   return (
     <Grid container spacing={4} marginLeft={15}>
       {/* My Profile */}
@@ -62,32 +69,70 @@ const ProfilePage = () => {
             sx={{ width: isSmallScreen ? 40 : 70, height: isSmallScreen ? 40 : 70 }}
           />
         </Grid>
-        <Grid item xs={8}>
+        
+        <Grid item xs={6}>
           <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: 15 }}>
             {`${user.firstName} ${user.lastName}`}
           </Typography>
           <Typography variant="subtitle1">{user.position}</Typography>
         </Grid>
-        
-        <Grid item xs={2} sx={{ marginRight: "50px" }}>
+
+          
+        <Grid item xs={1}>
+           {isEditing && (
+            <>
+              <Button
+                variant="outlined"
+                color="secondary"
+                sx={{ marginLeft: '-430px', marginTop: '15px' }}
+                startIcon={<AddAPhotoIcon />}
+                onClick={handleChangePhoto}
+              >
+                Change Photo
+              </Button>
+              <input
+                type="file"
+                style={{ display: 'none' }}
+                ref={fileInputRef}
+                onChange={(e) => {
+                  // Handle file selection here
+                  const selectedFile = e.target.files[0];
+                  console.log(selectedFile); // You can access the selected file here
+                }}
+              />
+            </>
+          )}
+        </Grid>
+
+        <Grid item xs={2}>
           {isEditing ? (
-            <Button sx={{ marginTop:"12px" }}  variant="contained" color="secondary" onClick={handleSaveClick}>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ marginTop: '12px', marginLeft: '10px' }}
+              onClick={handleSaveClick}
+            >
               <IconButton onClick={handleSaveClick} size="small">
-               <SaveIcon />
+                <SaveIcon />
               </IconButton>
               Save
             </Button>
           ) : (
-            <Button sx={{ marginTop:"12px" }}  variant="contained" color="secondary" onClick={handleEditClick}>
-                <IconButton onClick={handleEditClick} size="small" >
-                  <EditIcon />
-                </IconButton>
-                Edit
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ marginTop: '12px', marginLeft: '10px' }}
+              onClick={handleEditClick}
+            >
+              <IconButton onClick={handleEditClick} size="small">
+                <EditIcon />
+              </IconButton>
+              Edit
             </Button>
           )}
         </Grid>
       </Grid>
-
+             
       {/* Personal Information */}
       <Grid item xs={12}>
         <Typography variant="h5" sx={{ fontWeight: 'bold' }} color="secondary">
