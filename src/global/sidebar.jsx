@@ -137,13 +137,13 @@ function Sidebar() {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Fees&Fines"
               to="/FEES"
               icon={<CurrencyExchangeIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
             <Item
               title="Business"
@@ -152,9 +152,14 @@ function Sidebar() {
               selected={selected}
               setSelected={setSelected}
             />
+
+            
+
+
+
             <Item
               title="Buildings"
-              to="/Building"
+              to="/Buildings"
               icon={<ApartmentIcon />}
               selected={selected}
               setSelected={setSelected}

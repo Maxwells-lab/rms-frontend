@@ -5,7 +5,8 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 // import {Box} from "@mui/material"
 // import CreateAccount from "./components/Account/CreateAccount";
 // import LoginAccount from "./components/Account/loginAccount";
-
+import Business from "./components/Business";
+import Buildings from "./components/Buildings";
 import { GlobalContext, useContextMode } from "./theme";
 import Divider from "@mui/material/Divider";
 import { useState } from "react";
@@ -15,7 +16,7 @@ import Home from "./scenes/Home";
 import LineGraph from "./scenes/line";
 import Calendar from "./scenes/calendar";
 // import Fees from "./scenes/Fees&Fines";
-import Fees from "./scenes/Fees&Fines";
+
 import ProfilePage from "./components/ProfilePage";
 import Settings from "./components/Settings";
 import Privacy from "./components/Privacy";
@@ -44,13 +45,15 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Map" element={<OpenLayers />} />
-              <Route path="/Fees" element={<Fees />} />
+              {/* <Route path="/Fees" element={<Fees />} /> */}
               <Route path="/Calendar" element={<Calendar />} />
               <Route path="/PieChart" element={<Pie />} />
               <Route path="/LineGraph" element={<LineGraph />} />
               <Route path="/ProfilePage" element={<ProfilePage />} />
               <Route path="/Settings" element={<Settings />} />
               <Route path="/Privacy" element={<Privacy />} />
+              <Route path='Business' element={<Business/>} />
+              <Route path='Buildings' element={<Buildings/>} />
               {/* <Route path="/faq" element={<FAQ />} /> */}
               <Route path="/FAQ" element={<FAQ />} />
 

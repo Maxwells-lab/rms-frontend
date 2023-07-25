@@ -4,7 +4,6 @@ import { mockTransactions } from "../../DummyData/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import FinancialPerformace from "./FinancialPerformace";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import TextTemplator from "../../components/Template/Header";
 // import { LineChart } from "../../components/LineChart";
@@ -179,6 +178,7 @@ const Home = () => {
                 ₡23,453
               </Typography>
             </Box>
+
             <Box>
               <IconButton>
                 <DownloadOutlinedIcon
@@ -188,7 +188,7 @@ const Home = () => {
             </Box>
           </Box>
 
-          <Box height="250px" m="-20px 0 0 0">
+          <Box height="200px">
             <LineChart isDashboard={true} />
           </Box>
         </Box>

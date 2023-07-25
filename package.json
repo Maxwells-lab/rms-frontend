@@ -61,5 +61,8 @@
   "main": "index.js",
   "author": "Max SHODAN",
   "license": "ISC",
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }
