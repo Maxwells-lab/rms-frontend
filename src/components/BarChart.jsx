@@ -35,7 +35,7 @@ const config = {
   data: data,
   options: {
     events: ["mousemove", "mouseout", "click", "touchstart", "touchmove"],
-    devicePixelRatio: 44,
+    devicePixelRatio: 33,
     interaction: {
       mode: "nearest",
       intersect: true,
@@ -74,7 +74,7 @@ const config = {
       y: {
         // defining min and max so hiding the dataset does not change scale range
         // min: 4,
-        max: 500,
+        max: 300,
       },
     },
   },

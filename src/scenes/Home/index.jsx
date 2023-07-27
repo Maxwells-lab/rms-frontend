@@ -263,10 +263,10 @@ const Home = () => {
           >
             Pie CHARTS
           </Typography>
-          <Box display="flex" alignContent="center" justifyContent="center">
+          <Box display="flex" alignContent="center" justifyContent="center" borderRadius='2rem'>
             <PieChart
               isDashboard={true}
-              style={{ height: "22vh !important" }}
+              style={{ height: "20vh !important" , marginTop:"2rem"}}
             />
           </Box>
         </Box>
@@ -286,6 +286,7 @@ const Home = () => {
           <Box height="200vh" mt="-20px" width="60vw" alignContent="center" display="flex" justifyContent="center" right="4rem">
             <BarChart isDashboard={true} />
           </Box>
+          
         </Box>
         
       </Box>

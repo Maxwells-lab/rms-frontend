@@ -224,15 +224,17 @@ const LineChart = () => {
       class="chart-container"
       style={{
         position: "relative",
-        height: "60vh",
-        width: "45vw",
-        // paddingTop:"4rem",
+        marginRight:"3rem",
+        marginBottom:"0",
+        height: "50vh",
+        // width: "30vw",
+        paddingTop:"4rem",
         alignContent: "center",
         display: "flex",
-        flexWrap: "wrap",
-        flex: "1 1 20rem",
-        // marginTop: "3rem",
-        // left: "20rem",
+        flexWrap:"nowrap",
+        // flex: "1 1 20rem",
+        marginTop: "2rem",
+        left: "0",
       }}
     >
       <Line data={data} config={config} />
