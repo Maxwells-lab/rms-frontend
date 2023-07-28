@@ -25,7 +25,7 @@ const Item = ({ title, to, icon, selected, setSelected, dotColor }) => {
       active={selected === title}
       onClick={() => setSelected(title)}
       style={{
-        color: colors.grey[400],
+        color: colors ? 'grey[200]' : 'grey[700]',
       }}
       icon={icon}
     >
