@@ -7,7 +7,7 @@ import { GlobalContext, tokens } from "../theme";
 
 const Settings = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  // const colors = tokens(theme.palette.mode);
   const colorMode = useContext(GlobalContext); // Use the useContext hook to access the context
 
   const handleThemeToggle = () => {
