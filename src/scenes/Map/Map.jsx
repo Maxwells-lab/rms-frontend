@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "ol/ol.css";
 import "./mapCSS.css";
 import GeoJSON from 'ol/format/GeoJSON';
@@ -11,56 +11,250 @@ import Select from "ol/interaction/Select";
 import TileLayer from "ol/layer/Tile";
 import {OSM, XYZ} from "ol/source";
 import {Overlay} from "ol";
+import {Control, defaults as defaultControls} from "ol/control";
+import { Container } from '@mui/material';
 
 let container = document.getElementById('popup-container');
+
+const overlay = new Overlay({
+    element: container,
+    autoPan: false,
+});
+
+const buildings_source = new VectorLayer({
+    // background: 'white',
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: 'http://127.0.0.1:8080/geoserver/rms/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rms%3Abuildings&maxFeatures=1000000&outputFormat=application%2Fjson',
+    }),
+});
+
+const businesses_source = new VectorLayer({
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: 'http://127.0.0.1:8080/geoserver/rms/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rms%3Abusinesses&maxFeatures=1000000&outputFormat=application%2Fjson',
+    }),
+})
+
+const google_roads_source = new TileLayer({
+    source: new XYZ({
+        url: 'https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
+        // projection: "EPSG:32630"
+    }),
+});
+
+const google_hybrid_source = new TileLayer({
+    source: new XYZ({
+        url: 'https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+        // projection: "EPSG:32630"
+    }),
+});
+
+const openstreetmap_source = new TileLayer({
+    source: new OSM()
+});
+
+class RotateNorthControl extends Control {
+    /**
+     * @param {Object} [opt_options] Control options.
+     */
+    constructor(opt_options) {
+        const options = opt_options || {};
+
+        const button = document.createElement('button');
+        button.innerHTML = '<div>yes</div>';
+
+        const element = document.createElement('div');
+        element.className = 'rotate-north ol-unselectable ol-control';
+        element.appendChild(button);
+
+        super({
+            element: element,
+            target: options.target,
+        });
+
+        button.addEventListener('click', this.handleRotateNorth.bind(this), false);
+    }
+
+    handleRotateNorth() {
+        this.getMap().getView().setRotation(0);
+    }
+}
+
+
+class SelectLayerControl extends Control {
+    /**
+     * @param {Object} [opt_options] Control options.
+     */
+    constructor(opt_options) {
+        const options = opt_options || {};
+
+        const outer_div = document.createElement('div');
+        outer_div.classList.add("select-layer-control")
+        outer_div.style.backgroundColor = "#3322ee"
+
+        const basemap_div = document.createElement("div");
+
+        const basemap_form = document.createElement("form");
+
+        const basemap_fieldset = document.createElement("fieldset");
+        const basemap_legend = document.createElement("legend");
+        basemap_legend.innerText = "Basemap";
+
+
+        const osm_div = document.createElement("div");
+        const osm = document.createElement("input");
+        osm.checked = true;
+        osm.setAttribute("type", "radio");
+        osm.setAttribute("id", "osm");
+        osm.setAttribute("value", "osm");
+        osm.setAttribute("name", "basemap");
+
+        const osm_label = document.createElement("label");
+        osm_label.setAttribute("for", "osm");
+        osm_label.innerText = "OpenStreetMap";
+
+        const google_roads_div = document.createElement("div");
+        const google_roads = document.createElement("input");
+        google_roads.setAttribute("type", "radio");
+        google_roads.setAttribute("id", "roads");
+        google_roads.setAttribute("value", "roads");
+        google_roads.setAttribute("name", "basemap");
+
+        const google_roads_label = document.createElement("label");
+        google_roads_label.setAttribute("for", "roads");
+        google_roads_label.innerText = "Google Roads";
+
+
+        const google_hybrid_div = document.createElement("div");
+        const google_hybrid = document.createElement("input");
+        google_hybrid.setAttribute("type", "radio");
+        google_hybrid.setAttribute("id", "hybrid");
+        google_hybrid.setAttribute("value", "hybrid");
+        google_hybrid.setAttribute("name", "basemap");
+
+        const google_hybrid_label = document.createElement("label");
+        google_hybrid_label.setAttribute("for", "hybrid");
+        google_hybrid_label.innerText = "Google Hybrid";
+
+
+        osm_div.appendChild(osm);
+        osm_div.appendChild(osm_label);
+
+        google_roads_div.appendChild(google_roads);
+        google_roads_div.appendChild(google_roads_label);
+
+
+        google_hybrid_div.appendChild(google_hybrid);
+        google_hybrid_div.appendChild(google_hybrid_label);
+
+
+        basemap_fieldset.appendChild(basemap_legend);
+        basemap_fieldset.appendChild(osm_div);
+        basemap_fieldset.appendChild(google_roads_div);
+        basemap_fieldset.appendChild(google_hybrid_div);
+
+        basemap_form.appendChild(basemap_fieldset);
+        basemap_div.appendChild(basemap_form);
+
+
+        const layer_div = document.createElement("div");
+        const layer_fieldset = document.createElement("fieldset");
+        const layer_legend = document.createElement("legend");
+        layer_legend.innerText = "Layers";
+
+        const buildings_div = document.createElement("div");
+        const buildings_layer = document.createElement("input");
+        buildings_layer.setAttribute("type", "checkbox");
+        buildings_layer.checked = true;
+        const buildings_label = document.createElement("label");
+        buildings_label.setAttribute("for", "buildings");
+        buildings_label.innerText = "Buildings";
+
+        const businesses_div = document.createElement("div");
+        const businesses_layer = document.createElement("input");
+        businesses_layer.setAttribute("type", "checkbox");
+        businesses_layer.checked = true;
+        const businesses_label = document.createElement("label");
+        businesses_label.setAttribute("for", "businesses");
+        businesses_label.innerText = "Businesses";
+
+
+        buildings_div.appendChild(buildings_layer);
+        buildings_div.appendChild(buildings_label);
+        businesses_div.appendChild(businesses_layer);
+        businesses_div.appendChild(businesses_label);
+
+        layer_fieldset.appendChild(layer_legend);
+        layer_fieldset.appendChild(buildings_div);
+        layer_fieldset.appendChild(businesses_div);
+
+        layer_div.appendChild(layer_fieldset);
+
+
+        outer_div.appendChild(basemap_div);
+        outer_div.appendChild(layer_div);
+
+        super({
+            element: outer_div,
+            target: options.target,
+        });
+
+        outer_div.addEventListener('click', this.handleRotateNorth.bind(this), false);
+        basemap_form.addEventListener('change', this.handleChangeBasemap.bind(this, basemap_form), false);
+        businesses_layer.addEventListener("change", this.handleToggleBusinessLayer.bind(this, businesses_layer), false);
+        buildings_layer.addEventListener("change", this.handleToggleBuildingsLayer.bind(this, buildings_layer), false);
+    }
+
+    handleRotateNorth() {
+        this.getMap().getView().setRotation(0);
+    }
+
+    handleToggleBusinessLayer(businesses_layer) {
+        if (businesses_layer.checked) {
+            this.getMap().getLayers().push(businesses_source);
+        }
+        else {
+            this.getMap().removeLayer(businesses_source);
+        }
+    }
+
+    handleToggleBuildingsLayer(buildings_layer) {
+        if (buildings_layer.checked) {
+            this.getMap().getLayers().push(buildings_source);
+        }
+        else {
+            this.getMap().removeLayer(buildings_source);
+        }
+    }
+
+    handleChangeBasemap(basemap_form) {
+        console.log(this)
+        console.log(Array.from(basemap_form.children).find(r => r.checked));
+        const selected_basemap = basemap_form.querySelector("input:checked").value;
+        const current_basemap = this.getMap().getLayers().removeAt(0);
+
+        if (selected_basemap === "osm") {
+            this.getMap().getLayers().insertAt(0, openstreetmap_source);
+        }
+        else if (selected_basemap === "roads"){
+            this.getMap().getLayers().insertAt(0, google_roads_source);
+        }
+        else if (selected_basemap === "hybrid") {
+            this.getMap().getLayers().insertAt(0, google_hybrid_source);
+        }
+    }
+}
 
 
 export const OpenLayers = () => {
     const ref = useRef(0);
     const mapRef = useRef(0);
+
     useEffect(() => {
-
-        console.log(container)
-
-        const overlay = new Overlay({
-            element: container,
-            autoPan: false,
-        });
-
-        const buildings_source = new VectorLayer({
-            // background: 'white',
-            source: new VectorSource({
-                format: new GeoJSON(),
-                url: 'http://127.0.0.1:8080/geoserver/rms/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rms%3Abuildings&maxFeatures=1000000&outputFormat=application%2Fjson',
-            }),
-        });
-
-        const businesses_source = new VectorLayer({
-            source: new VectorSource({
-                format: new GeoJSON(),
-                url: 'http://127.0.0.1:8080/geoserver/rms/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rms%3Abusinesses&maxFeatures=1000000&outputFormat=application%2Fjson',
-            }),
-        })
-
-        console.log(new VectorSource({
-            format: new GeoJSON(),
-            url: 'http://127.0.0.1:8080/geoserver/rms/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rms%3Abusinesses&maxFeatures=1000000&outputFormat=application%2Fjson',
-        }).getProjection())
-
-        const google_roads_source = new TileLayer({
-            source: new XYZ({
-                url: 'https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
-                // projection: "EPSG:32630"
-            }),
-        });
-
-        const openstreetmap_source = new TileLayer({
-          source: new OSM()
-        });
-        console.log((new OSM()).getProjection())
-
         const map = new Map({
             target: 'map-container',
+            controls: defaultControls().extend([new SelectLayerControl()]),
             layers: [
                 openstreetmap_source,
                 // new TileLayer({

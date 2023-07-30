@@ -76,3 +76,12 @@
 }
 
 
+.select-layer-control {
+    position: absolute;
+    top: 65px;
+    left: .5em;
+}
+
+.ol-touch .select-layer-control {
+    top: 80px;
+}
